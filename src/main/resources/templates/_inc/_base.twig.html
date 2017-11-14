@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "_head.twig.html" %}
+</head>
+<body>
+    {% include "_header.twig.html" %}
+    <main class="section">
+        <div class="container">
+            {% block content %}<!--I like to be extended-->{% endblock %}
+        </div>
+    </main>
+    {% include "_footer.twig.html" %}
+</body>
+</html>
