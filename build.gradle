@@ -20,13 +20,25 @@ sourceCompatibility = 1.8
 
 repositories {
 	mavenCentral()
+	jcenter()
 }
 
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	// Spring MVC
 	compile('org.springframework.boot:spring-boot-starter-web')
-	runtime('org.springframework.boot:spring-boot-devtools')
+
+	// JPA and MySQL
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	runtime('mysql:mysql-connector-java')
+
+	// Twig template engine
+	compile 'org.jtwig:jtwig-spring-boot-starter:5.86.1.RELEASE'
+	compile 'org.jtwig:jtwig-hot-reloading-extension:5.86.1.RELEASE'
+
+	// Devtool
+	runtime('org.springframework.boot:spring-boot-devtools')
+
+	// Test @TODO implement tests
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
