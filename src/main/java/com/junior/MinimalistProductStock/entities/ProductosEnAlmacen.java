@@ -1,36 +1,27 @@
 package com.junior.MinimalistProductStock.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "PRODUCTOS_EN_ALMACEN")
 public class ProductosEnAlmacen {
 
-    @Id
-    private Long almacenID;
+    @EmbeddedId
+    private ProductosEnAlmacenID id;
 
-    @Id
-    private Long productoID;
-
+    @Column(name = "cantidad")
     private Long cantidad;
 
     /*
-     * Getters and Setters @TODO
+     * Getters and Setters
      */
-    public Long getAlmacenID() {
-        return almacenID;
+    public ProductosEnAlmacenID getId() {
+        return id;
     }
 
-    public void setAlmacenID(Long almacenID) {
-        this.almacenID = almacenID;
-    }
-
-    public Long getProductoID() {
-        return productoID;
-    }
-
-    public void setProductoID(Long productoID) {
-        this.productoID = productoID;
+    public void setId(ProductosEnAlmacenID id) {
+        this.id = id;
     }
 
     public Long getCantidad() {
@@ -39,5 +30,30 @@ public class ProductosEnAlmacen {
 
     public void setCantidad(Long cantidad) {
         this.cantidad = cantidad;
+    }
+}
+
+class ProductosEnAlmacenID implements Serializable {
+
+    @Column(name = "producto_id")
+    private Long productoID;
+
+    @Column(name = "almacen_id")
+    private Long almacenID;
+
+    public ProductosEnAlmacenID() {
+    }
+
+    public ProductosEnAlmacenID(Long productoID, Long almacenID) {
+        this.productoID = productoID;
+        this.almacenID = almacenID;
+    }
+
+    public Long getProductoID() {
+        return productoID;
+    }
+
+    public Long getAlmacenID() {
+        return almacenID;
     }
 }

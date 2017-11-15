@@ -8,13 +8,15 @@ import java.util.Collection;
 public class Almacen {
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "nombre")
     private String nombre;
 
-//    @OneToMany(targetEntity = Transacion.class, mappedBy = "almacen", fetch = FetchType.EAGER)
-//    private Collection transaciones;
+    @OneToMany(targetEntity = Transacion.class, mappedBy = "almacen", fetch = FetchType.EAGER)
+    private Collection transaciones;
 
     /*
      * Getters and Setters
