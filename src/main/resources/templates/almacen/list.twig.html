@@ -1,0 +1,59 @@
+{% extends "../_inc/_base.twig.html" %}
+{% block title %}Almacenes{% endblock %}
+
+{% block content %}
+<div class="level">
+    <div class="level-left">
+        <h2 class="title is-2">
+            Mantenimiento Almacenes
+        </h2>
+    </div>
+    <br>
+    <div class="level-ritht">
+        <a class="level-item button is-primary" href="almacen/nuevo">
+            Crear Almacen
+        </a>
+    </div>
+</div>
+
+<div class="content">
+    <table class="table is-striped is-hoverable is-fullwidth">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NOMBRE</th>
+                <th colspan="2">ACTION</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>ID</th>
+                <th>NOMBRE</th>
+                <th colspan="2">ACTION</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for almacen in almacenes %}
+            <tr>
+                <td>{{ almacen.getId() }}</td>
+                <td>{{ almacen.getNombre() }}</td>
+                <td>
+                    <a href="almacen/{{ almacen.getId() }}/remover">
+                        <span class="icon has-text-danger">
+                            <i class="fa fa-trash-o"></i>
+                        </span>
+                    </a>
+                </td>
+                <td>
+                    <a href="almacen/{{ almacen.getId() }}/editar">
+                        <span class="icon has-text-danger">
+                            <i class="fa fa-pencil-square-o"></i>
+                        </span>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

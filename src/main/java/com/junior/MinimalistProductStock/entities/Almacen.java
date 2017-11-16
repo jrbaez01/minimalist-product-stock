@@ -18,6 +18,14 @@ public class Almacen {
     @OneToMany(targetEntity = Transacion.class, mappedBy = "almacen", fetch = FetchType.EAGER)
     private Collection transaciones;
 
+    // Construtors
+    public Almacen() {
+    }
+
+    public Almacen(String nombre) {
+        this.nombre = nombre;
+    }
+
     /*
      * Getters and Setters
      */
