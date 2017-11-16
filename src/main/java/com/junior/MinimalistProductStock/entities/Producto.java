@@ -22,6 +22,14 @@ public class Producto {
     @ManyToMany(mappedBy="productos",fetch=FetchType.EAGER)
     private List<Transacion> transaciones;
 
+    // Constructors
+    public Producto() {
+    }
+
+    public Producto(String nombre) {
+        this.nombre = nombre;
+    }
+
     //Getters and Setters
     public Long getId() {
         return id;

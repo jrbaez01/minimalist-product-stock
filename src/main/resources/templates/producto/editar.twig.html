@@ -1,0 +1,26 @@
+{% extends "../_inc/_base.twig.html" %}
+{% block title %}Editar Productos{% endblock %}
+
+{% block content %}
+<form method="post" action="/mantenimiento/producto/actualizar">
+    <input type="hidden" name="producto_id" value="{{ producto.getId() }}">
+    <div class="field">
+        <label class="label">Nombre</label>
+        <p class="control">
+            <input class="input" type="text" placeholder="Insert Nombre" name="nombre" value="{{ producto.getNombre() }}">
+        </p>
+    </div>
+
+    <div class="field is-grouped">
+        <p class="control">
+            <button class="button is-primary">Actualizar</button>
+        </p>
+        <p class="control">
+            <a class="button is-link" href="/mantenimiento/producto">Cancelar</a>
+        </p>
+        <p class="control">
+            <a class="button is-danger" href="remover">Remover</a>
+        </p>
+    </div>
+</form>
+{% endblock %}

@@ -56,4 +56,7 @@ class ProductosEnAlmacenID implements Serializable {
     public Long getAlmacenID() {
         return almacenID;
     }
+
+    // @TODO https://vladmihalcea.com/2016/08/01/the-best-way-to-map-a-composite-primary-key-with-jpa-and-hibernate/
+    // Implement some required methods
 }
