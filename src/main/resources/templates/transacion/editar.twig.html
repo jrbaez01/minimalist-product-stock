@@ -1,0 +1,60 @@
+{% extends "../_inc/_base.twig.html" %}
+{% block title %}Editar Productos{% endblock %}
+
+{% block content %}
+<form method="post" action="/transacion/actualizar">
+    <input type="hidden" name="id" value="{{ transacion.getId() }}">
+    <div class="field">
+        <label class="label">Transación Tipo</label>
+        <div class="control">
+            <div class="select">
+                <select name="transacion_tipo_id">
+                    {% for transacion_tipo in transacion_tipos %}
+                    <option value="{{ transacion_tipo.getId() }}"
+                            {{- ( transacion.getTransacionTipoID() == transacion_tipo.getId() ) ? "selected" : "" }}>
+                        {{- transacion_tipo.getNombre() -}}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Almacen</label>
+        <div class="control">
+            <div class="select">
+                <select name="almacen_id">
+                    {% for almacen in almacenes %}
+                    <option value="{{ almacen.getId() }}"
+                            {{- ( transacion.getAlmacenID() == almacen.getId() ) ? "selected" : "" }}>
+                        {{- almacen.getNombre() -}}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Description</label>
+        <p class="control">
+            <textarea class="textarea" placeholder="Inserte Descripcion" name="descripcion">
+                {{- transacion.getDescripcion() -}}
+            </textarea>
+        </p>
+    </div>
+
+    <div class="field is-grouped">
+        <p class="control">
+            <button class="button is-primary">Actualizar</button>
+        </p>
+        <p class="control">
+            <a class="button is-link" href="/transacion">Cancelar</a>
+        </p>
+        <p class="control">
+            <a class="button is-danger" href="remover">Remover</a>
+        </p>
+    </div>
+</form>
+{% endblock %}

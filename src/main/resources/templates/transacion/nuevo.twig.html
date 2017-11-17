@@ -1,0 +1,48 @@
+{% extends "../_inc/_base.twig.html" %}
+{% block title %}Editar Productos{% endblock %}
+
+{% block content %}
+<form method="post" action="/transacion/crear">
+    <div class="field">
+        <label class="label">Transación Tipo</label>
+        <div class="control">
+            <div class="select">
+                <select name="transacion_tipo_id">
+                    {% for transacion_tipo in transacion_tipos %}
+                    <option value="{{ transacion_tipo.getId() }}">{{ transacion_tipo.getNombre() }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Almacen</label>
+        <div class="control">
+            <div class="select">
+                <select name="almacen_id">
+                    {% for almacen in almacenes %}
+                    <option value="{{ almacen.getId() }}">{{ almacen.getNombre() }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Description</label>
+        <p class="control">
+            <textarea class="textarea" placeholder="Inserte Descripcion" name="descripcion"></textarea>
+        </p>
+    </div>
+
+    <div class="field is-grouped">
+        <p class="control">
+            <button class="button is-primary">Crear</button>
+        </p>
+        <p class="control">
+            <a class="button is-link" href="/transacion">Cancelar</a>
+        </p>
+    </div>
+</form>
+{% endblock %}

@@ -23,9 +23,6 @@ public class Transacion {
     @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name = "fecha")
-    private Date fecha;
-
     @ManyToOne(optional = false)
     @JoinColumn(name = "almacen_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Almacen almacen;
@@ -44,9 +41,19 @@ public class Transacion {
     )
     private List<Producto> productos;
 
+    // Constructors
+    public Transacion() {
+    }
+
+    public Transacion(Long transacionTipoID, Long almacenID, String descripcion) {
+        this.transacionTipoID = transacionTipoID;
+        this.almacenID = almacenID;
+        this.descripcion = descripcion;
+    }
+
     /*
-     * Getters and Setters
-     */
+         * Getters and Setters
+         */
     public Long getId() {
         return id;
     }
@@ -79,11 +86,20 @@ public class Transacion {
         this.descripcion = descripcion;
     }
 
-    public Date getFecha() {
-        return fecha;
+    // Relationship objects
+    public Almacen getAlmacen() {
+        return almacen;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public TransacionTipo getTransacionTipo() {
+        return transacionTipo;
+    }
+
+    public Collection getTransacionDetalles() {
+        return transacionDetalles;
+    }
+
+    public List<Producto> getProductos() {
+        return productos;
     }
 }
