@@ -17,7 +17,7 @@ public class Producto {
     private String nombre;
 
     @OneToMany(targetEntity = TransacionDetalle.class, mappedBy = "producto", fetch = FetchType.EAGER)
-    private Collection transacionDetalles;
+    private List<TransacionDetalle> transacionDetalles;
 
     @ManyToMany(mappedBy="productos",fetch=FetchType.EAGER)
     private List<Transacion> transaciones;
@@ -45,5 +45,30 @@ public class Producto {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public List<TransacionDetalle> getTransacionDetalles() {
+        return transacionDetalles;
+    }
+
+    public List<Transacion> getTransaciones() {
+        return transaciones;
+    }
+
+    public Long getCantidad() {
+        // Sorry for the mess, need to do it quickly...
+
+        Long total = 0L;
+        for (Transacion transacion : this.getTransaciones()) {
+
+            // Si el tipo de transacion es entrada, suma de lo contrario resta
+            if (transacion.getTransacionTipoID() == 1) {
+                total += transacion.getTransacionDetalles().get(0).getCantidad();
+            } else {
+                total -= transacion.getTransacionDetalles().get(0).getCantidad();
+            }
+        }
+
+        return total;
     }
 }

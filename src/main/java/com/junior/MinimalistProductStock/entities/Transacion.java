@@ -32,7 +32,7 @@ public class Transacion {
     private TransacionTipo transacionTipo;
 
     @OneToMany(targetEntity = TransacionDetalle.class, mappedBy = "transacion", fetch = FetchType.EAGER)
-    private Collection transacionDetalles;
+    private List<TransacionDetalle> transacionDetalles;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "TRANSACION_DETALLES",
@@ -95,7 +95,7 @@ public class Transacion {
         return transacionTipo;
     }
 
-    public Collection getTransacionDetalles() {
+    public List<TransacionDetalle> getTransacionDetalles() {
         return transacionDetalles;
     }
 

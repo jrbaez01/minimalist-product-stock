@@ -3,6 +3,49 @@
 
 {% block content %}
 <div class="content">
-    <h1>Hello {{ name }}!</h1>
+    <div class="columns is-multiline">
+        {% for producto in productos %}
+        <div class="column is-12-tablet is-6-desktop">
+
+            <article class="media box">
+                <div class="media-content">
+                    <a class="" href="#">
+                        <p class="title is-3">
+                            {{ producto.getNombre() }}
+                        </p>
+                        <!--<p class="subtitle">-->
+                            <!--{{ producto.getNombre() }}-->
+                        <!--</p>-->
+                    </a>
+                    <br>
+                    <div class="field is-grouped">
+                        <p class="control">
+                            <a class="button" href="/transacion/nuevo?transacion_tipo=2&producto_id={{ producto.getId() }}&redirect=/">
+                                <span class="icon">
+                                    <i class="fa fa-sign-out"></i>
+                                </span>
+                                <span>Sacar</span>
+                            </a>
+                        </p>
+                        <p class="control">
+                            <a class="button is-primary" href="/transacion/nuevo?transacion_tipo=1&producto_id={{ producto.getId() }}&redirect=/">
+                                <span class="icon">
+                                    <i class="fa fa-sign-in"></i>
+                                </span>
+                                <span>Entrar</span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="media-right">
+                    {% set producto_cantidad = producto.getCantidad() %}
+                    <p class="tag is-large {{ (producto_cantidad > 9) ? 'is-info' : (producto_cantidad < 1) ? 'is-danger' : 'is-warning' }}">{{ producto_cantidad }}</p>
+                </div>
+            </article>
+
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
